@@ -1,4 +1,3 @@
-
 import 'package:beakandbite/common/bottom_bar.dart';
 import 'package:beakandbite/constants/global_variables.dart';
 import 'package:beakandbite/features/admin/screens/admin_screen.dart';
@@ -8,7 +7,6 @@ import 'package:beakandbite/provider/user_provider.dart';
 import 'package:beakandbite/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 void main() {
   runApp(MultiProvider(providers: [
