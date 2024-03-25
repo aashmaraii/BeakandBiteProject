@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:beakandbite/models/ratings.dart';
+
 class Food {
   final String name;
   final String description;
@@ -8,6 +10,7 @@ class Food {
   final String category;
   final double price;
   final String? id;
+  final List<Rating>? rating;
  
   Food({
     required this.name,
@@ -17,7 +20,7 @@ class Food {
     required this.category,
     required this.price,
     this.id,
-    
+    this.rating,
   });
 
   Map<String, dynamic> toMap() {
@@ -29,6 +32,7 @@ class Food {
     'category':category,
     'price':price,
     'id':id,
+    'rating':rating,
   
    };
   }
@@ -42,6 +46,9 @@ class Food {
       category: map['category'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       id: map['_id'],
+      rating:map['ratings'] != null ? List<Rating>.from(map['ratings']?.map((x)=>Rating.fromMap(x),
+      ),
+      ) :null,
      
     );
   }

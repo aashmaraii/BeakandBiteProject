@@ -1,4 +1,5 @@
 import 'package:beakandbite/common/loader.dart';
+import 'package:beakandbite/features/product_description/screens/food_description.dart';
 import 'package:beakandbite/features/search/services/search_services.dart';
 import 'package:beakandbite/features/search/widgets/search_food.dart';
 import 'package:beakandbite/models/food.dart';
@@ -87,7 +88,11 @@ class _SearchFoodScreenState extends State<SearchFoodScreen> {
           Expanded(child: ListView.builder(
             itemCount: foods!.length,
             itemBuilder: (context,index){
-              return SearchedFood(food: foods![index]);
+              return GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, FoodDescriptionPage.routeName,arguments:foods![index] );
+                },
+                child: SearchedFood(food: foods![index]));
             },
             ),
             ),

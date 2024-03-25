@@ -12,44 +12,46 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      child: ListView.builder(
-        itemCount: GlobalVariables.categoryImages.length,
-        scrollDirection: Axis.horizontal,
-        // itemExtent: 75,
-        itemBuilder: (context,index){
-          return GestureDetector(
-            onTap: ()=> navigateToCategoryPage(context,GlobalVariables.categoryImages[index]['title']!),
-            child: Column(
-              children: [
-                Container(
-                  height: 60,
-                  width: 80,
-                  
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  // decoration: const BoxDecoration(
-                  //   color: Colors.amber,
-                  //   borderRadius: BorderRadius.all(Radius.circular(20))
+    return IntrinsicHeight(
+      child: SizedBox(
+        height: 80,
+        child: ListView.builder(
+          itemCount: GlobalVariables.categoryImages.length,
+          scrollDirection: Axis.horizontal,
+          // itemExtent: 75,
+          itemBuilder: (context,index){
+            return GestureDetector(
+              onTap: ()=> navigateToCategoryPage(context,GlobalVariables.categoryImages[index]['title']!),
+              child: Column(
+                children: [
+                  Container(
+                    height: 60,
+                    width: 80,
                     
-                  // ),
-                  child: Image.asset(GlobalVariables.categoryImages[index]['image']!,
-                  fit: BoxFit.cover,
-                  
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    // decoration: const BoxDecoration(
+                    //   color: Colors.amber,
+                    //   borderRadius: BorderRadius.all(Radius.circular(20))
+                      
+                    // ),
+                    child: Image.asset(GlobalVariables.categoryImages[index]['image']!,
+                    fit: BoxFit.cover,
+                    
+                    ),
                   ),
-                ),
-                
-                
-                 Text(GlobalVariables.categoryImages[index]['title']!,
-                 style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                 ),
-                 ),
-              ]
-            ),
-          );
-        }),
+                  
+                  
+                   Text(GlobalVariables.categoryImages[index]['title']!,
+                   style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                   ),
+                   ),
+                ]
+              ),
+            );
+          }),
+      ),
     );
   }
 }

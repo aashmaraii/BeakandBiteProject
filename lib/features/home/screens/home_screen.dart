@@ -1,4 +1,5 @@
 // import 'package:beakandbite/features/home/widgets/top_categories.dart';
+import 'package:beakandbite/features/home/widgets/food_for_you.dart';
 import 'package:beakandbite/features/home/widgets/top_categories.dart';
 import 'package:beakandbite/features/search/screens/search_screen.dart';
 import 'package:beakandbite/provider/user_provider.dart';
@@ -113,7 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const SizedBox(height: 10,),
-              const Expanded(child: Categories()),
+              const Categories(),
+                const SizedBox(height: 10,),
+               const FoodForYou(),
+
             ],
           ),
         )

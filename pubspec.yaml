@@ -44,6 +44,9 @@ dependencies:
   file_picker: ^6.1.1
   carousel_slider: ^4.2.1
   cloudinary_public: ^0.23.1
+  flutter_rating_bar: ^4.0.1
+  url_launcher: ^6.2.5
+  flutter_phone_direct_caller: ^2.1.1
 
 dev_dependencies:
   flutter_test:

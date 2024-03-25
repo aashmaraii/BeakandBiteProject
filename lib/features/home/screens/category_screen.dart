@@ -110,6 +110,7 @@
 import 'package:beakandbite/common/loader.dart';
 import 'package:beakandbite/constants/global_variables.dart';
 import 'package:beakandbite/features/home/services/home_services.dart';
+import 'package:beakandbite/features/product_description/screens/food_description.dart';
 import 'package:beakandbite/models/food.dart';
 import 'package:flutter/material.dart';
 
@@ -149,9 +150,10 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
         child: AppBar(
+          centerTitle: true,
           flexibleSpace: Container(
             decoration: const BoxDecoration(
-              gradient: GlobalVariables.appBarGradient,
+              // gradient: GlobalVariables.appBarGradient,
             ),
           ),
           title: Text(
@@ -170,12 +172,12 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   alignment: Alignment.topLeft,
-                  child: Text(
-                    'Keep shopping for ${widget.category}',
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
+                  // child: Text(
+                  //   'Keep shopping for ${widget.category}',
+                  //   style: const TextStyle(
+                  //     fontSize: 20,
+                  //   ),
+                  // ),
                 ),
                 SizedBox(
                   height: 170,
@@ -189,11 +191,11 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                       final food = foodList![index];
                       return GestureDetector(
                         onTap: () {
-                          // Navigator.pushNamed(
-                          //   context,
-                          //   ProductDetailScreen.routeName,
-                          //   arguments: product,
-                          // );
+                          Navigator.pushNamed(
+                            context,
+                            FoodDescriptionPage.routeName,
+                            arguments: food,
+                          );
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -216,7 +218,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                                   children: [
                                     Container(
                                       margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 8),
-                                      // height: 100,
+                                      height: 100,
                                       width: 100,
                                       decoration: const BoxDecoration(
                                         color: Colors.white,
@@ -227,12 +229,15 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                                       
                                     ),
                                     //Color.fromARGB(255, 254, 163, 193)
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(food.name),
-                                        Text(food.price.toString()),
-                                      ],
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(food.name,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                                          Text(food.price.toString()),
+                                        ],
+                                      ),
                                     ),
                                     // const Spacer(),
                                     // IconButton(onPressed: (){

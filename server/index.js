@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 const foodRouter = require('./routes/product');
+const userRouter = require('./routes/user');
 // Init
 const PORT = 3000;
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(authRouter);
 app.use(adminRouter);
 app.use(foodRouter);
+app.use(userRouter);
 
 mongoose.connect(DB).then(()=>{
     console.log('Connection Successful');
@@ -27,7 +29,7 @@ mongoose.connect(DB).then(()=>{
 // CREATING AN API
 // GET, PUT, POST, DELETE, UPDATE -> CRUD
 
-app.listen(PORT, "0.0.0.0" , () => {
+app.listen(PORT, "" , () => {
     console.log(`connected at port ${PORT} `);
 });
 module.exports = authRouter;

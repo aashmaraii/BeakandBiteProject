@@ -1,3 +1,5 @@
+// import 'dart:js_util';
+
 import 'package:beakandbite/models/user.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +10,20 @@ class UserProvider extends ChangeNotifier{
       password: '', 
       address: '', 
       type: '',
-       token: '');
+       token: '',
+       favourites:[],
+       cart: [],
+       );
+       
        User get user => _user;
        
        void setUser(String user){
         _user = User.fromJson(user);
+        notifyListeners();
+       }
+
+       void setUserFromModel(User user){
+        _user = user;
         notifyListeners();
        }
 }

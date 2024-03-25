@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { foodSchema } = require('./food');
+// const { foodSchema } = require('./food');
 
 const userSchema = mongoose.Schema({
     name:{
@@ -26,10 +28,22 @@ const userSchema = mongoose.Schema({
         type:String,
         default:'',
     },
+    favourites:[{
+        type:mongoose.Types.ObjectId, ref: "Food"
+    }],
     type:{
         type:String,
         default:'user',
     },
+    cart:
+        [{food: foodSchema,
+            quantity:{
+                type:Number,
+                required:true,
+            }
+        },],
+        
+    
 
 });
 const User = mongoose.model('User', userSchema);

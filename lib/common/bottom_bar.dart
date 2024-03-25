@@ -1,7 +1,11 @@
 import 'package:beakandbite/constants/global_variables.dart';
+import 'package:beakandbite/features/account/widgets/logout.dart';
+import 'package:beakandbite/features/cart/screens/cart_screen.dart';
 import 'package:beakandbite/features/home/screens/home_screen.dart';
+import 'package:beakandbite/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:provider/provider.dart';
 
 class BottomBar extends StatefulWidget {
   static const String routeName = '/actual-home';
@@ -18,15 +22,18 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget>pages = [
     const HomeScreen(),
-    const Center(
-      child: Text('Cart Page'), 
-    ),
+    const CartScreen(),
+    // const Center(
+    //   child: Text('Cart Page'), 
+    // ),
      const Center(
       child: Text('Favourite Page'),
     ),
-     const Center(
-      child: Text('Account Page'),
-    ),
+    //  const Center(
+    //   child: Text('Account Page'),
+    // ),
+    const TopButtons(),
+    
   ];
   void updatePage(int page){
     setState(() {
@@ -36,6 +43,7 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
+    final userCartLength = context.watch<UserProvider>().user.cart.length;
     return Scaffold(
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
@@ -71,7 +79,7 @@ class _BottomBarState extends State<BottomBar> {
           ),
           child: badges.Badge(
             
-            badgeContent: const Text('2'),
+            badgeContent: Text(userCartLength.toString()),
             badgeStyle: badges.BadgeStyle(
               elevation: 0,
               shape: badges.BadgeShape.circle,
