@@ -2,13 +2,16 @@ import 'dart:io';
 
 // import 'package:beakandbite/common/custom_button.dart';
 // import 'package:beakandbite/common/custom_textfield.dart';
+import 'package:beakandbite/common/admin_textfield.dart';
 import 'package:beakandbite/common/custom_button.dart';
-import 'package:beakandbite/common/custom_textfield.dart';
+import 'package:beakandbite/common/signIn_button.dart';
+// import 'package:beakandbite/common/custom_textfield.dart';
 // import 'package:beakandbite/constants/global_variables.dart';
 import 'package:beakandbite/constants/utils.dart';
+// import 'package:beakandbite/features/admin/screens/admin_screen.dart';
 import 'package:beakandbite/features/admin/services/admin_services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dotted_border/dotted_border.dart';
+// import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 // import 'package:dotted_border/dotted_border.dart';
 
@@ -41,9 +44,10 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
      List<String> foodCategories = [
       'Momo',
       'Noodles',
-      // 'Burger'
-      // // 'Pizza',
-      // 'Fries'
+      'Burger',
+      'Pizza',
+      'Fries',
+      'Cutlet'
      ];
      void sellProduct(){
       if(_addFoodFormKey.currentState!.validate() && images.isNotEmpty){
@@ -78,90 +82,139 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
             key: _addFoodFormKey,
             child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              children: [
-                const SizedBox(height: 20,),
-                images.isNotEmpty?CarouselSlider(
-      items: images.map((i){
-        return Builder(builder: (BuildContext context)=>Image.file(i,fit: BoxFit.cover,height: 200,),
-        );
-
-      },
-      ).toList(),options:CarouselOptions(
-        viewportFraction:1,
-        height:200,
-      ),
-
-    ):GestureDetector(
-                  onTap: selectImages,
-                  child: DottedBorder(
-                    borderType: BorderType.RRect,
-                    radius: const Radius.circular(10),
-                    dashPattern: const [10,4],
-                    strokeCap: StrokeCap.round,
-                    child: Container(
-                    width: double.infinity,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.folder_open,size: 40,),
-                        const SizedBox(height: 15,),
-                        Text('Select Food Images',style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey.shade400,
-                        ),),  
-                      ],
-                    ),
+            child: SingleChildScrollView(
+              child: Column(
+                         
+                children: [
+                  const SizedBox(height: 20,),
+                  images.isNotEmpty?CarouselSlider(
+                  items: images.map((i){
+                    return Builder(builder: (BuildContext context)=>Image.file(i,fit: BoxFit.cover,height: 200,),
+                    );
+                        
+                  },
+                  ).toList(),options:CarouselOptions(
+                    viewportFraction:1,
+                    height:200,
                   ),
+                        
+                ):GestureDetector(
+                    onTap: selectImages,
+                    child: 
+                    Material(
+                      elevation: 4.0,
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1.5,
+                            
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Icon(Icons.camera_alt_outlined,color: Colors.black,),
+                      ),
+                        
+                    )
+                    // DottedBorder(
+                    //   borderType: BorderType.RRect,
+                    //   radius: const Radius.circular(10),
+                    //   dashPattern: const [10,4],
+                    //   strokeCap: StrokeCap.round,
+                    //   child: Container(
+                    //   width: double.infinity,
+                    //   height: 150,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(10)
+                    //   ),
+                    //   child: Column(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: [
+                    //       const Icon(Icons.folder_open,size: 40,),
+                    //       const SizedBox(height: 15,),
+                    //       Text('Select Food Images',style: TextStyle(
+                    //         fontSize: 15,
+                    //         color: Colors.grey.shade400,
+                    //       ),),  
+                    //     ],
+                    //   ),
+                    // ),
+                    // ),
+                    ,
                   ),
-                ),
-                const SizedBox(height: 30,),
-                CustomTextField(
-                  controller: productNameController,
-                   hintText: 'Product Name'),
-                  //  const SizedBox(height: 10,),
-                   CustomTextField(
-                  controller: descriptionController,
-                   hintText: 'Description',
-                  //  maxLines: 20,
-                   ),
-                    //  const SizedBox(height: 10,),
-                   CustomTextField(
-                  controller: priceController,
-                   hintText: 'Price'),
-                    //  const SizedBox(height: 10,),
-                   CustomTextField(
-                  controller: quantityController,
-                   hintText: 'ingredients'),
-                   SizedBox(
-                    width: double.infinity,
-                    child: DropdownButton(value: category,
-                    icon: const Icon(Icons.keyboard_arrow_down),
-                    items: foodCategories.map((String item){
-                      return DropdownMenuItem(
-                        value: item,
-                        child: Text(item));
-                    }).toList(),
-                    onChanged: (String?newVal){
-                      setState(() {
-                        category = newVal!;
-                      });
-                    },),
-                   ),
-                  //  const SizedBox(
-                  //   height: 10,
-                  //  ),
-                   CustomButton(text: 'Sell', 
-                   onTap: sellProduct,
-                   )
-              ],
+                  const SizedBox(height: 30,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 25.0),
+                         child:  Text('Add Food Details',
+                        style: 
+                        TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                         ),
+
+                      ),
+                      const SizedBox(height: 10,),
+
+                  AdminTextField(
+                    text: 'Name',
+                    controller: productNameController,
+                     hintText: 'Food Name'),
+                     const SizedBox(height: 10,),
+                      AdminTextField(
+                      text: 'Description',
+                    controller: descriptionController,
+                     hintText: 'Description',
+                     maxLines: 5,
+                     ),
+                       const SizedBox(height: 10,),
+                    AdminTextField (
+                    controller: priceController,
+                     hintText: 'Price', text: 'Price',),
+                       const SizedBox(height: 10,),
+                     AdminTextField(
+                      text: 'Quantity',
+                    controller: quantityController,
+                     hintText: 'Quantity'),
+                     Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                       child: SizedBox(
+                        width: double.infinity,
+                        child: DropdownButton(value: category,
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        items: foodCategories.map((String item){
+                          return DropdownMenuItem(
+                            value: item,
+                            child: Text(item));
+                        }).toList(),
+                        onChanged: ( String? newVal){
+                          setState(() {
+                            category = newVal!;
+                          });
+                        },),
+                       ),
+                     ),
+                    //  const SizedBox(
+                    //   height: 10,
+                    //  ),
+                     MySignInButton(text: 'Add Details', 
+                     onTap: sellProduct,
+                     )
+                    ],
+                  )
+                  
+                     
+                ],
+              ),
             ),
           ),
-        )
+                  )
         ),
       ),
     );

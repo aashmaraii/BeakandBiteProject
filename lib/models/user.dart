@@ -87,6 +87,7 @@ class User {
   final String token;
   final List<dynamic> cart;
   final List<dynamic> favourites;
+  final bool isCutleryNeeded;
 
   User({
     required this.id,
@@ -98,6 +99,7 @@ class User {
     required this.token,
     required this.cart,
     required this.favourites,
+    this.isCutleryNeeded = false,
   });
 
   Map<String, dynamic> toMap() {
@@ -111,6 +113,7 @@ class User {
       'token': token,
       'cart': cart,
       'favourites': favourites,
+      'isCutleryNeeded': isCutleryNeeded,
       
     };
   }
@@ -134,6 +137,7 @@ class User {
           (x) => Map<String, dynamic>.from(x),
         ),
       ),
+      isCutleryNeeded: map['isCutleryNeeded'] ?? false,
     );
   }
 
@@ -151,6 +155,8 @@ class User {
     String? token,
     List<dynamic>? cart,
     List<dynamic>? favourites,
+    bool? isCutleryNeeded,
+    
   }) {
     return User(
       id: id ?? this.id,
@@ -162,6 +168,8 @@ class User {
       token: token ?? this.token,
       cart: cart ?? this.cart,
       favourites: favourites ?? this.favourites,
+      isCutleryNeeded: isCutleryNeeded ?? this.isCutleryNeeded,
+      
     );
   }
 }

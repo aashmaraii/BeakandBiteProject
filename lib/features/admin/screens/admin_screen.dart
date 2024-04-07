@@ -1,32 +1,22 @@
 import 'package:beakandbite/constants/global_variables.dart';
+import 'package:beakandbite/features/admin/analytics/order_analyticsscreen.dart';
+import 'package:beakandbite/features/admin/screens/orders_screen.dart';
 import 'package:beakandbite/features/admin/screens/posts_screen.dart';
-// import 'package:beakandbite/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({super.key});
-
   @override
   State<AdminScreen> createState() => _AdminScreenState();
 }
-
 class _AdminScreenState extends State<AdminScreen> {
   int _page = 0;
   double bottomBarWidth = 30;
   double bottomBarBorderWidth = 3;
-
   List<Widget>pages = [
     const PostsScreen(),
-     const Center(
-      child: Text('Post Page'),
-    ),
-    const Center(
-      child: Text('Analytics Page'), 
-    ),
-     const Center(
-      child: Text('Orders Page'),
-    ),
-    
+    const FoodOrderScreen(),
+    const OrderAnalyticsScreen(), 
   ];
   void updatePage(int page){
     setState(() {

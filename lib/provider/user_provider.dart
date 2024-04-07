@@ -13,6 +13,7 @@ class UserProvider extends ChangeNotifier{
        token: '',
        favourites:[],
        cart: [],
+       isCutleryNeeded: false,
        );
        
        User get user => _user;
@@ -26,4 +27,5 @@ class UserProvider extends ChangeNotifier{
         _user = user;
         notifyListeners();
        }
+       
 }

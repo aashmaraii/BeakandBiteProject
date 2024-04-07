@@ -108,7 +108,7 @@
 
 
 import 'package:beakandbite/common/loader.dart';
-import 'package:beakandbite/constants/global_variables.dart';
+// import 'package:beakandbite/constants/global_variables.dart';
 import 'package:beakandbite/features/home/services/home_services.dart';
 import 'package:beakandbite/features/product_description/screens/food_description.dart';
 import 'package:beakandbite/models/food.dart';

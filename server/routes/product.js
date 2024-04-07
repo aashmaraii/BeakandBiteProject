@@ -77,28 +77,30 @@ foodRouter.get("/api/products/", auth, async (req, res) => {
 
   //   }
   // });
-  foodRouter.get("/api/food-for-you", auth, async (req, res) => {
-    try {
-      let foods = await Food.find({});
+  //TRUE
+
+  // foodRouter.get("/api/food-for-you", auth, async (req, res) => {
+  //   try {
+  //     let foods = await Food.find({});
   
-      foods = foods.sort((a, b) => {
-        let aSum = 0;
-        let bSum = 0;
+  //     foods = foods.sort((a, b) => {
+  //       let aSum = 0;
+  //       let bSum = 0;
   
-        for (let i = 0; i < a.ratings.length; i++) {
-          aSum += a.ratings[i].rating;
-        }
+  //       for (let i = 0; i < a.ratings.length; i++) {
+  //         aSum += a.ratings[i].rating;
+  //       }
   
-        for (let i = 0; i < b.ratings.length; i++) {
-          bSum += b.ratings[i].rating;
-        }
-        return aSum < bSum ? 1 : -1;
-      });
+  //       for (let i = 0; i < b.ratings.length; i++) {
+  //         bSum += b.ratings[i].rating;
+  //       }
+  //       return aSum < bSum ? 1 : -1;
+  //     });
   
-      res.json(foods[0]);
-    } catch (e) {
-      res.status(500).json({ error: e.message });
-    }
-  });
+  //     res.json(foods[0]);
+  //   } catch (e) {
+  //     res.status(500).json({ error: e.message });
+  //   }
+  // });
 
   module.exports = foodRouter;

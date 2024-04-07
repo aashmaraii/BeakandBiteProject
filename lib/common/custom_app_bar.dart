@@ -61,7 +61,7 @@
 // }
 
 import 'package:beakandbite/features/favourites/services/favorites_service.dart';
-import 'package:beakandbite/models/food.dart';
+// / import 'package:beakandbite/models/food.dart';
 import 'package:beakandbite/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -69,9 +69,16 @@ import 'package:provider/provider.dart';
 class CustomAppBar extends StatelessWidget {
   final IconData leftIcon;
   final IconData rightIcon;
+  final Color rightIconColor;
 
-  const CustomAppBar({Key? key, required this.leftIcon, required this.rightIcon})
-      : super(key: key);
+
+  const CustomAppBar({
+    Key? key,
+    required this.leftIcon,
+    required this.rightIcon,
+    required this.rightIconColor,
+  }) : super(key: key);
+    
 
   @override
   Widget build(BuildContext context) {
@@ -113,9 +120,7 @@ class CustomAppBar extends StatelessWidget {
               color: Colors.white,
             ),
             child: GestureDetector(
-              
               onTap: () {
-                
                 handleFavourites('65e31bffa3f0b57ad69000b1');
                 print('print');
               },

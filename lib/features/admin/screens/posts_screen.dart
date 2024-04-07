@@ -8,6 +8,7 @@ import 'package:beakandbite/models/food.dart';
 // import 'package:beakandbite/features/admin/services/admin_services.dart';
 // import 'package:beakandbite/models/food.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({super.key});
@@ -48,48 +49,66 @@ class _PostsScreenState extends State<PostsScreen> {
   @override
   Widget build(BuildContext context) {
     //  return Scaffold(
-    return foods == null? const Loader(): Scaffold(
-      body: GridView.builder(
-        itemCount: foods!.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2) ,
-        itemBuilder: (context,index){
-          final foodData = foods![index];
-          return Column(
-            children: [
-              SizedBox(
-                height: 140,
-                child: SingleProduct(image: foodData.images[0]),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(child: Text(
-                    foodData.name,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                  ),
-                 IconButton(onPressed: (){
-                deleteFood(foodData, index);
-                 }, icon: const Icon(Icons.delete_outline))
+    return foods == null? const Loader(): SafeArea(
+      child: Scaffold(
 
-                ],
-              )
-            ],
-          );
-        }),
-      
-      floatingActionButton: FloatingActionButton(
-      
-        onPressed: navigateToAddFood,
+        body: GridView.builder(
+          // scrollDirection: Axis.vertical,
+          itemCount: foods!.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2) ,
+          itemBuilder: (context,index){
+            final foodData = foods![index];
+            return Column(
+              
+              children: [
+               const SizedBox(height: 20,),
+                Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                
+                ),
+                  child: SingleProduct(
+                    
+                    image: foodData.images[0]),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        foodData.name,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    ),
+                   IconButton(onPressed: (){
+                  deleteFood(foodData, index);
+                   }, icon: const Icon(Icons.delete_outline))
+              
+                  ],
+                )
+              ],
+            );
+          }),
         
-        tooltip: 'Add Food',
-          child: const Icon(Icons.add),
+        floatingActionButton: FloatingActionButton(
+        
+          onPressed: navigateToAddFood,
+          
+          tooltip: 'Add Food',
+            child: const Icon(Icons.add),
+        ),
+        
+        
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        
       ),
-      
-      
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      
     );
   }
 }

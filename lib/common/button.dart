@@ -1,3 +1,4 @@
+// import 'package:beakandbite/try/address.dart';
 import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
@@ -14,7 +15,9 @@ class MyButton extends StatelessWidget {
 
       ),
       child: Center(child: GestureDetector(
-        onTap: (){},
+        onTap: (){
+          // Navigator.push(context, MaterialPageRoute(builder: (context)=> const UserAddressScreen(foodAmount: ,)));
+        },
         child: const Text('Order',style: TextStyle(
           color: Colors.white,
           fontSize: 16,

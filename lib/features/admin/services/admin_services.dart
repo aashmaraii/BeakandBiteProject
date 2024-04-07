@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:beakandbite/constants/error_handling.dart';
 import 'package:beakandbite/constants/global_variables.dart';
+import 'package:beakandbite/features/admin/model/food_sales.dart';
 import 'package:beakandbite/models/food.dart';
+import 'package:beakandbite/models/services/myorder.dart';
 import 'package:beakandbite/provider/user_provider.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:beakandbite/constants/utils.dart';
@@ -136,4 +138,158 @@ class AdminServices{
       showSnackBar(context, e.toString());
     }
   }
+//   Future<List<Order>> fetchUserOrders(BuildContext context) async{
+//      final userProvider = Provider.of<UserProvider>(context, listen: false);
+//       List<Order> orderList = [];
+//     try{
+     
+//       http.Response res = await http.get(Uri.parse('$uri/admin/get/user/orders'), headers: {
+// 'Content-Type': 'application/json; charset=UTF-8',
+// 'x-auth-token':userProvider.user.token,});
+//   httpErrorHandle(response: res, 
+//   context: context,
+//    onSuccess: (){
+//     for (int i = 0; i < jsonDecode(res.body).length; i++){
+//       orderList.add(
+//         Order.fromJson(
+//           jsonEncode(
+//             jsonDecode(res.body)[i],
+//             ),),);
+//     }
+//    });
+
+//     }catch (e) {
+//       showSnackBar(context, e.toString());
+//     }
+//    return orderList;
+//   }
+
+  Future<List<Order>> fetchUserOrders(BuildContext context) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Order> orderList = [];
+    try {
+      http.Response res =
+          await http.get(Uri.parse('$uri/admin/get/my-orders'), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': userProvider.user.token,
+      });
+
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          for (int i = 0; i < jsonDecode(res.body).length; i++) {
+            orderList.add(
+              Order.fromJson(
+                jsonEncode(
+                  jsonDecode(res.body)[i],
+                ),
+              ),
+            );
+          }
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+    return orderList;
+  }
+
+  // void changeFoodOrderStatus({
+  //   required BuildContext context,
+  //   required int status,
+  //   required VoidCallback onSuccess,
+  //   required Order order,
+  // }) async {
+  //   final userProvider = Provider.of<UserProvider>(context, listen: false);
+
+  //   try {
+  //     http.Response res = await http.post(
+  //       Uri.parse('$uri/admin/change-food-order-status'),
+  //       headers: {
+  //         'Content-Type': 'application/json; charset=UTF-8',
+  //         'x-auth-token': userProvider.user.token,
+  //       },
+  //       body: jsonEncode({
+  //         'id': order.id,
+  //         'status': status,
+  //       }),
+  //     );
+
+  //     httpErrorHandle(
+  //       response: res,
+  //       context: context,
+  //       onSuccess: () {
+  //         onSuccess();
+  //       },
+  //     );
+  //   } catch (e) {
+  //     showSnackBar(context, e.toString());
+  //   }
+  // }
+
+  Future<Map<String, dynamic>> getFoodEarnings(BuildContext context) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<FoodSales> foodSales = [];
+    int totalEarning = 0;
+
+    try {
+      http.Response res =
+          await http.get(Uri.parse('$uri/admin/earning'), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': userProvider.user.token,
+      });
+
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+        var response = jsonDecode(res.body);
+        totalEarning = response['totalOrderEarnings'];
+        foodSales = [
+          FoodSales('Momo', response['momoEarnings']),
+          FoodSales('Noodles', response['noodleEarnings']),
+        ];
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+    return {
+      'foodSales': foodSales,
+      'totalOrderEarnings': totalEarning,
+    };
+  }
+
+  void changeFoodOrderStatus({
+    required BuildContext context,
+    required int status,
+    required Order order,
+    required VoidCallback onSuccess,
+  }) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+
+    try {
+      http.Response res = await http.post(
+        Uri.parse('$uri/admin/change-food-order-status'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+        body: jsonEncode({
+          'id': order.id,
+          'status': status,
+        }),
+      );
+
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: onSuccess,
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
 }
+

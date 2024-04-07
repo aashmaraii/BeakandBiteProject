@@ -78,37 +78,37 @@ class HomeServices {
 
   
 
-  Future<Food> foodForYou({
-    required BuildContext context,
+  // Future<Food> foodForYou({
+  //   required BuildContext context,
     
-  }) async {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    Food food = Food(name: '', 
+  // }) async {
+  //   final userProvider = Provider.of<UserProvider>(context, listen: false);
+  //   Food food = Food(name: '', 
     
-    description: '', 
+  //   description: '', 
     
-    quantity: 0,
-     images: [],
-      category: '',
-       price: 0);
-    try {
-      http.Response res = await http
-          .get(Uri.parse('$uri/api/food-for-you'), headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'x-auth-token': userProvider.user.token,
-      });
+  //   quantity: 0,
+  //    images: [],
+  //     category: '',
+  //      price: 0);
+  //   try {
+  //     http.Response res = await http
+  //         .get(Uri.parse('$uri/api/food-for-you'), headers: {
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //       'x-auth-token': userProvider.user.token,
+  //     });
 
-      httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () {
-         food = Food.fromJson(res.body);
-        },
-      );
-    } catch (e) {
-      showSnackBar(context, e.toString());
-    }
-    return food;
-  }
+  //     httpErrorHandle(
+  //       response: res,
+  //       context: context,
+  //       onSuccess: () {
+  //        food = Food.fromJson(res.body);
+  //       },
+  //     );
+  //   } catch (e) {
+  //     showSnackBar(context, e.toString());
+  //   }
+  //   return food;
+  // }
 }
 

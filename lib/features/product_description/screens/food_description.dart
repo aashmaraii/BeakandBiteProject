@@ -9,6 +9,7 @@ import 'package:beakandbite/models/food.dart';
 import 'package:beakandbite/provider/user_provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -67,8 +68,11 @@ class _FoodDescriptionPageState extends State<FoodDescriptionPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const CustomAppBar(
+                  
                   leftIcon: Icons.arrow_back_ios_new_outlined, 
                   rightIcon: Icons.favorite,
+                  rightIconColor: Colors.red,
+                  
                   ),
                   Container(
                     height: 250,
@@ -118,14 +122,15 @@ class _FoodDescriptionPageState extends State<FoodDescriptionPage> {
                             options: CarouselOptions(
                               viewportFraction: 1,
                               // height: 100,
-                            )),
+                            ),
+                            ),
                           ),
                         )
                       ],
                     ),
                   ),
                  Container(
-                  padding: const EdgeInsets.all(25),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   color: Colors.white,
                   child: Column(
                     children: [
@@ -134,92 +139,33 @@ class _FoodDescriptionPageState extends State<FoodDescriptionPage> {
                         fontSize: 22,
                       ),
                       ),
-                      // const SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                      Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         iconRow(Icons.access_time_outlined, Colors.blue, widget.food.price.toString()),
+                        iconRow(Icons.production_quantity_limits, Colors.green, widget.food.quantity.toString()),
                       RatingStars(rating:averageRating),
                         // iconRow(Icons.star_outline, Colors.amber, 'later')
                       ],
                      ),
-                      const SizedBox(height: 30,),
+                      const SizedBox(height: 10,),
+                     const SizedBox(height: 20,),
                      Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('Ingredients',style: TextStyle(
+                       children: [
+                          const Text('About',style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                          ),),
-                        GestureDetector(
-                          onTap: () {
-                           showModalBottomSheet(context: context, builder: (BuildContext context){
-                            return Container(
-
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              height: 100,
-                              child: const Row(
-                                children: [
-                                  Text('Give Feedbacks')
-                                ],
-                              ),
-                            );
-                           });
-                            // Navigator.push(context, MaterialPageRoute(builder: (context)=>  const ReviewSnackBar()));
-                          },
-                          child: GestureDetector(
-                            // onTap: (){
-                            //   Navigator.push(context, MaterialPageRoute(builder: (context)=>  ));
-                            // },
-                            child: const Text('Reviews')))
-                      ],
-                     ),
-                     const SizedBox(height: 20,),
-                    const Row(
-                       children: [
-                         Text('About',style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                         ),),
-                       ],
-                     ),
-                     const SizedBox(height: 10,),
-                     
-                     Row(
-                       children: [
-                         Text(widget.food.description),
-                       ],
-                     ),
-                     const SizedBox(height: 20,),
-                    Container(
-                      
-                      height: 40,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.amber,
-                      ),
-                      child: CustomButton(text: 'Basket', 
-                      onTap: addToCart,
-                      // onTap: addToCart,
-                      ),
-                      // child: MaterialButton(onPressed: (){
-                        
-                      // },
-                      // child: const Text('Basket'),
-                      // )
-                      // color: Colors.amber,
-                    ),
-                    RatingBar.builder(
+                           RatingBar.builder(
         initialRating: myRating,
         minRating: 1,
         direction: Axis.horizontal,
         itemCount: 5,
         allowHalfRating: true,
-        itemPadding: const EdgeInsets.symmetric(horizontal: 4),
+        itemSize: 15,
+        // itemPadding: const EdgeInsets.symmetric(horizontal: 6),
         itemBuilder: (context, _)=>
           const Icon(Icons.star,color: Colors.amber,)
         , 
@@ -227,11 +173,45 @@ class _FoodDescriptionPageState extends State<FoodDescriptionPage> {
           rateFoodServices.rateFood(context: context, 
           food: widget.food, rating: rating);
         })
+                       
+                       ],
+                     ),
+                     const SizedBox(height: 10,),
+                     
+                     
+                  
+                         Text(widget.food.description,
+                         style: const TextStyle(
+                          fontSize: 14,
+                    
+                         ),
+                         ),
+                       
+                     
+                     const SizedBox(height: 60,),
+                    Container(
+                      
+                      height: 40,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                         color: Colors.amber.shade300,
+                      ),
+                      child: CustomButton(text: 'Basket', 
+                      onTap: addToCart,
+                      // onTap: addToCart,
+                      ),
+                      
+                    ),
+                  
                     
                     ],
                   ),
+                 ),
+                 Container(
+                  height: 100,
+                  color: Colors.white,
                  )
-                  
 
               ],
             ),

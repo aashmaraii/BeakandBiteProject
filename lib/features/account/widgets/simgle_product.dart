@@ -20,14 +20,19 @@ class SingleProduct extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           color: Colors.white,
         ),
-        child: Container(
-          width: 180,
-          padding: const EdgeInsets.all(10),
-          child: Image.network(
-            image,
-            fit: BoxFit.fitHeight,
-            width: 180,
-          ),
+        child: Column(
+          children: [
+            Container(
+              width: 180,
+              padding: const EdgeInsets.all(10),
+              child: Image.network(
+                image,
+                fit: BoxFit.fitHeight,
+                width: 180,
+              ),
+              
+            ),
+          ],
         ),
       ),
     );

@@ -7,9 +7,7 @@ class Categories extends StatelessWidget {
   const Categories({super.key});
   void navigateToCategoryPage(BuildContext context, String category){
    Navigator.pushNamed(context, CategoryDealsScreen.routeName,arguments: category);
-
   }
-
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(

@@ -135,7 +135,7 @@ class _FoodForYouState extends State<FoodForYou> {
   }
 
   void foodForYou() async {
-    food = await homeServices.foodForYou(context: context);
+    // food = await homeServices.foodForYou(context: context);
     setState(() {});
   }
 

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 // String uri = 'http://100.64.197.4:3000';
-String uri = 'http://27.34.65.45/32';
+// String uri = 'http://192.168.1.65:3000';
+// String uri = 'http://192.168.1.65:3000';
+String uri = 'http://100.64.212.193:3000';
+
+// String uri = 'http://27.34.65.45/32:3000 ';
 
 class GlobalVariables{
    static const appBarGradient = LinearGradient(
@@ -33,19 +37,23 @@ static const List<String> carouselImages = [
     },
     {
       'title': 'Noodles',
-      'image': 'assets/images/b.jpeg',
+      'image': 'assets/images/b.jpeg', 
     },
-    // {
-    //   'title': 'Burger',
-    //   'image': 'assets/images/c.jpeg',
-    // },
-    // // {
-    // //   'title': 'Pizza',
-    // //   'image': 'assets/images/d.png',
-    // // },
-    // {
-    //   'title': 'Fries',
-    //   'image': 'assets/images/e.jpeg',
-    // },
+    {
+      'title': 'Burger',
+      'image': 'assets/images/c.jpeg',
+    },
+    {
+      'title': 'Pizza',
+      'image': 'assets/images/d.png',
+    },
+    {
+      'title': 'Fries',
+      'image': 'assets/images/e.jpeg',
+    },
+    {
+      'title': 'Cutlet',
+      'image': 'assets/images/g.jpeg',
+    },
   ];
 }
