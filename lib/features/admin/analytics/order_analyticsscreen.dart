@@ -1,4 +1,6 @@
 import 'package:beakandbite/common/loader.dart';
+import 'package:beakandbite/features/account/widgets/button.dart';
+import 'package:beakandbite/features/account/widgets/services/account_services.dart';
 import 'package:beakandbite/features/admin/model/food_sales.dart';
 import 'package:beakandbite/features/admin/services/admin_services.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +39,12 @@ class _OrderAnalyticsScreenState extends State<OrderAnalyticsScreen> {
 
     ):  Column(
       children: [
-        Text('\$$totalFoodSales',),
+        Text('\$$totalFoodSales',
+        ),
+         AccountButton(
+              text: 'Log Out',
+              onTap: () => ProfileServices().logOut(context),
+            ),
         ],
     );
   }

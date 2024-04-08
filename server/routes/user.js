@@ -156,4 +156,14 @@ userRouter.post('/api/user-address', auth, async (req, res)=>{
   }
 });
 
+userRouter.get("/api/products", auth, async (req, res) => {
+  try {
+    const foods = await Food.find({});
+    console.log(foods.body)
+    res.json(foods);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
   module.exports = userRouter;

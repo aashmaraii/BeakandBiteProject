@@ -4,6 +4,7 @@ import 'package:beakandbite/common/loader.dart';
 import 'package:beakandbite/features/account/widgets/simgle_product.dart';
 import 'package:beakandbite/features/admin/screens/add_products_screen.dart';
 import 'package:beakandbite/features/admin/services/admin_services.dart';
+import 'package:beakandbite/features/home/services/home_services.dart';
 import 'package:beakandbite/models/food.dart';
 // import 'package:beakandbite/features/admin/services/admin_services.dart';
 // import 'package:beakandbite/models/food.dart';
@@ -20,6 +21,7 @@ class PostsScreen extends StatefulWidget {
 class _PostsScreenState extends State<PostsScreen> {
   List<Food>? foods;
   final AdminServices adminServices = AdminServices();
+  // final AdminServices adminServices = AdminServices();
   @override
   void initState() {
     super.initState();
@@ -95,7 +97,9 @@ class _PostsScreenState extends State<PostsScreen> {
                 )
               ],
             );
+            
           }),
+          
         
         floatingActionButton: FloatingActionButton(
         

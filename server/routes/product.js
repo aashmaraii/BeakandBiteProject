@@ -4,7 +4,7 @@ const auth = require("../middlewares/auth");
 const { Food }= require('../models/food');
 
 
-foodRouter.get("/api/products/", auth, async (req, res) => {
+foodRouter.get("/api/products/", async (req, res) => {
     try {
       console.log(req.query.category);
       const foods = await Food.find({ category: req.query.category });

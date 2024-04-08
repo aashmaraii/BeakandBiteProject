@@ -3,6 +3,7 @@ const adminRouter = express.Router();
 const admin = require('../middlewares/admin');
 const { Food } = require('../models/food');
 const Order = require('../models/orderfood');
+const auth = require('../middlewares/auth');
 
 // Add product
 adminRouter.post("/admin/add-product", admin, async (req, res) => {
@@ -33,7 +34,7 @@ adminRouter.post("/admin/add-product", admin, async (req, res) => {
   //     res.status(500).json({error:e.message});
   //   }
   // })
-  adminRouter.get("/admin/get-products", admin, async (req, res) => {
+  adminRouter.get("admin/get-products", auth, async (req, res) => {
     try {
       const foods = await Food.find({});
       res.json(foods);

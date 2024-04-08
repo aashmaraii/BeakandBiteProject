@@ -1,4 +1,3 @@
-import 'package:beakandbite/common/custom_button.dart';
 import 'package:beakandbite/common/custom_textfield.dart';
 import 'package:beakandbite/common/signIn_button.dart';
 import 'package:beakandbite/features/auth/screens/auth_screens.dart';
@@ -64,6 +63,7 @@ class LoginScreen extends StatelessWidget {
                     MySignInButton(
                       text: 'Sign In',
                       onTap: () {
+                        print("signin");
                         signInUser(context);
                       },
                     ),

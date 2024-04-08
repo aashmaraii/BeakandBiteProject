@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 // String uri = 'http://100.64.197.4:3000';
 // String uri = 'http://192.168.1.65:3000';
-// String uri = 'http://192.168.1.65:3000';
-String uri = 'http://100.64.212.193:3000';
+// String uri = 'http://100.64.212.193:3000';
+// String uri = 'http://100.64.212.193:3000';
+
+String uri = 'http://192.168.18.14:3000';
 
 // String uri = 'http://27.34.65.45/32:3000 ';
 
